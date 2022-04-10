@@ -12,8 +12,8 @@ Piece::Piece()
 
 void Piece::mouseReleaseEvent(QGraphicsSceneMouseEvent *e) // Doesn't always work, but it will do for now
 {
-    int x = pos().x() - (int) pos().x() % tile_size;
-    int y = pos().y() - (int) pos().y() % tile_size;
+    int x = (pos().x() + tile_size / 2) - ((int) pos().x() + tile_size / 2 ) % tile_size;
+    int y = (pos().y() + tile_size / 2) - ((int) pos().y() + tile_size / 2 ) % tile_size;
     setPos(x,y);
     QGraphicsRectItem::mouseReleaseEvent((e));
 }
