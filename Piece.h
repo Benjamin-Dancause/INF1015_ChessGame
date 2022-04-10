@@ -14,7 +14,6 @@ class Piece : public QGraphicsRectItem //possible memory leak
 {
 public:
     Piece();
-
 protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *e);
 };
