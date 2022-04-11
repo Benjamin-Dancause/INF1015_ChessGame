@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
+
     setCentralWidget(view);
 }
 

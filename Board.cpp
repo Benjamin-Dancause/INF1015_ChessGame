@@ -32,6 +32,7 @@ Board::Board(QObject *parent) : QGraphicsScene(parent)
         }
     }
 
+    //construction of the pieces
     for (int i = 0 ; i < 4; i++)
     {
         Piece* piece = new Piece();

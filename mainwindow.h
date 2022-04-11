@@ -23,6 +23,7 @@ private slots:
 private:
 
     QGraphicsView* view;
+
     Board* board;
 };
 #endif // MAINWINDOW_H
