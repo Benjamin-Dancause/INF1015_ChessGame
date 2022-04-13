@@ -5,6 +5,7 @@
 #define tile_size 75
 #endif
 
+#include <QMessageBox>
 #include <QGraphicsRectItem>
 #include <QGraphicsItem>
 #include <QBrush>
