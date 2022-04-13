@@ -7,6 +7,8 @@
 #include "Piece.h"
 #include "Tile.h"
 #define tile_size 75
+
+
 class Board : public QGraphicsScene
 {
     Q_OBJECT
@@ -15,6 +17,8 @@ public:
     ~Board();
     QList<Piece*> pieces;
     QList<Tile*> tiles;
+private:
+    int logicalBoard[8][8];
 
 signals:
 

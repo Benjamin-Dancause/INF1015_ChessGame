@@ -15,6 +15,7 @@ class Tile : public QGraphicsRectItem // possible memory leak
 public:
     Tile();
     void setWhite();
+private:
 };
 
 #endif // TILE_H
