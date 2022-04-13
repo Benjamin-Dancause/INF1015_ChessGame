@@ -6,9 +6,9 @@
 class Bishop : public Piece
 {
 public:
-    Bishop();
+    Bishop(int x, int y, Color color);
 protected:
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *e);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *e) override;
 };
 
 #endif // BISHOP_H

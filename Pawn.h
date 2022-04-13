@@ -6,7 +6,7 @@
 class Pawn : public Piece
 {
 public:
-    Pawn();
+    Pawn(int x, int y, Color color);
 protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *e);
 };

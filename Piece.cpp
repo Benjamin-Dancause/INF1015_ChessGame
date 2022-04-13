@@ -10,11 +10,21 @@ Piece::Piece()
 
 }
 
-Piece::Piece(int x, int y)
+Piece::Piece(int x, int y, Color color)
 {
-    setRect(0, 0, tile_size, tile_size);
+    x_ = x;
+    y_ = y;
+    color_ = color;
+    setRect(x*tile_size, y*tile_size, tile_size, tile_size);
     setPen(QPen(Qt::black));
-    setBrush(QBrush(Qt::blue));
+    if (color == BLACK)
+    {
+        setBrush(QBrush(Qt::blue));
+    }
+    else
+    {
+        setBrush(QBrush(Qt::red));
+    }
     setFlag(QGraphicsItem::ItemIsMovable);
     setFlag(QGraphicsItem::ItemIsSelectable);
 

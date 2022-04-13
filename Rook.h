@@ -6,7 +6,7 @@
 class Rook : public Piece
 {
 public:
-    Rook();
+    Rook(int x, int y, Color color);
 protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *e);
 };

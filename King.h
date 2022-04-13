@@ -6,7 +6,7 @@
 class King : public Piece
 {
 public:
-    King();
+    King(int x, int y, Color color);
 protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *e);
 };
