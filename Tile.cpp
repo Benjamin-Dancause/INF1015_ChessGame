@@ -3,8 +3,8 @@
 Tile::Tile()
 {
     setRect(0, 0, tile_size, tile_size);
-    setPen(QPen(Qt::black));
-    setBrush(QBrush(Qt::black));
+    setPen(QPen(Qt::darkGray));
+    setBrush(QBrush(Qt::darkGray));
 }
 
 void Tile::setWhite()

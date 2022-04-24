@@ -5,6 +5,12 @@
 #include <QGraphicsScene>
 
 #include "Piece.h"
+#include "King.h"
+#include "Queen.h"
+#include "Bishop.h"
+#include "Knight.h"
+#include "Rook.h"
+#include "Pawn.h"
 #include "Tile.h"
 
 class Board : public QGraphicsScene

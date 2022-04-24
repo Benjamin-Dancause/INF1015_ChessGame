@@ -11,7 +11,7 @@ Board::Board(QObject *parent) : QGraphicsScene(parent)
         addLine(0, i * 75, 600, i * 75);
         addLine(i * 75, 0, i * 75, 600);
     }
-    //construction of the black and white patern
+    //construction of the black and white pattern
     {
         bool temp = true;
         for (int i = 0 ; i < 8; i++)
@@ -39,21 +39,10 @@ Board::Board(QObject *parent) : QGraphicsScene(parent)
     for (int i = 0 ; i < 4; i++)
     {
         Piece* piece = new Piece();
-        piece->setPos(i*75, 0);
+        piece->setPos(i*75+7, 7);
         pieces.append(piece);
         addItem(piece);
     }
-
-    //testing an allegedly better way to do the pieces
-    QPixmap image("/home/Cherry/Documents/inf1015/projet/INF1015_ChessGame/Black/Chess_bdt60.png");
-    QPixmap image1("../INF1015_ChessGame/Black/Chess_bdt60.png");
-
-    std::cout << image.isNull() << std::endl;
-    std::cout << image1.isNull() << std::endl;
-    QGraphicsPixmapItem* test = new QGraphicsPixmapItem(image);
-    addItem(test);
-
-
 
 }
 
