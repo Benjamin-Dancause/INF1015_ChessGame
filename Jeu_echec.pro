@@ -13,6 +13,7 @@ SOURCES += \
     Board.cpp \
     King.cpp \
     Knight.cpp \
+    LogicalBoard.cpp \
     Pawn.cpp \
     Piece.cpp \
     Queen.cpp \
@@ -26,6 +27,7 @@ HEADERS += \
     Board.h \
     King.h \
     Knight.h \
+    LogicalBoard.h \
     Pawn.h \
     Piece.h \
     Queen.h \

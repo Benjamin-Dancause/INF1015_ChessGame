@@ -1,4 +1,5 @@
 #include "Pawn.h"
+#include <iostream>
 
 Pawn::Pawn(int x, int y, Color color)
 {
@@ -25,7 +26,7 @@ void Pawn::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
 
     QMessageBox msg;
     msg.setText("Illegal move");
-    //std::cout << "x: " << x/75 << " y: " << y/75 << std::endl; //Debug tool, to be removed
+    //std::cout << "x: " << x/75 << " y: " << y/75 << std::endl; //Debug tool, to be remove (include iostream too)
     msg.exec();
     setPos(x + 7, y + 7);
     if (isFirstMove) {isFirstMove = false;}

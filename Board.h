@@ -12,6 +12,8 @@
 #include "Rook.h"
 #include "Pawn.h"
 #include "Tile.h"
+#include "LogicalBoard.h"
+
 
 class Board : public QGraphicsScene
 {
@@ -23,7 +25,6 @@ public:
     QList<Piece*> pieces;
     QList<Tile*> tiles;
 private:
-    int logicalBoard[8][8]; // this might be useless
 
 signals:
 
