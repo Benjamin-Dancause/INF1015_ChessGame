@@ -9,6 +9,8 @@ public:
     Pawn(int x, int y, Color color);
 protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *e);
+private:
+    bool isFirstMove = true;
 };
 
 #endif // PAWN_H

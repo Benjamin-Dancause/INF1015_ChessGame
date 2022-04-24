@@ -13,6 +13,8 @@ Queen::Queen(int x, int y, Color color)
     {
         setPixmap(QPixmap("../INF1015_ChessGame/White/Chess_qlt60.png"));
     }
+
+    setPos(x, y);
 }
 
 void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)

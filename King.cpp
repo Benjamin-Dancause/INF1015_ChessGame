@@ -13,6 +13,8 @@ King::King(int x, int y, Color color)
     {
         setPixmap(QPixmap("../INF1015_ChessGame/White/Chess_klt60.png"));
     }
+
+    setPos(x, y);
 }
 
 void King::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)

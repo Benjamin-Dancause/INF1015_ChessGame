@@ -13,6 +13,8 @@ Knight::Knight(int x, int y, Color color)
     {
         setPixmap(QPixmap("../INF1015_ChessGame/White/Chess_nlt60.png"));
     }
+
+    setPos(x, y);
 }
 
 void Knight::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)

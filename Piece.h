@@ -17,6 +17,8 @@ class Piece : public QGraphicsPixmapItem //possible memory leak
 public:
     Piece();
     Piece(int x, int y, Color color);
+    int getPosx();
+    int getPosy();
 private:
 protected:
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *e);

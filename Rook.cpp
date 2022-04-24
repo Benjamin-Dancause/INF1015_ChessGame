@@ -13,6 +13,8 @@ Rook::Rook(int x, int y, Color color)
     {
         setPixmap(QPixmap("../INF1015_ChessGame/White/Chess_rlt60.png"));
     }
+
+    setPos(x, y);
 }
 
 void Rook::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
