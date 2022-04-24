@@ -1,7 +1,10 @@
 #include "Board.h"
+#include <iostream>
+
 
 Board::Board(QObject *parent) : QGraphicsScene(parent)
 {
+    view = new QGraphicsView(this);
     //construction of the grid
     for (int i = 0 ; i < 9; i++)
     {
@@ -40,6 +43,18 @@ Board::Board(QObject *parent) : QGraphicsScene(parent)
         pieces.append(piece);
         addItem(piece);
     }
+
+    //testing an allegedly better way to do the pieces
+    QPixmap image("/home/Cherry/Documents/inf1015/projet/INF1015_ChessGame/Black/Chess_bdt60.png");
+    QPixmap image1("../INF1015_ChessGame/Black/Chess_bdt60.png");
+
+    std::cout << image.isNull() << std::endl;
+    std::cout << image1.isNull() << std::endl;
+    QGraphicsPixmapItem* test = new QGraphicsPixmapItem(image);
+    addItem(test);
+
+
+
 }
 
 Board::~Board()

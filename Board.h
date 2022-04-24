@@ -7,13 +7,13 @@
 #include "Piece.h"
 #include "Tile.h"
 
-
 class Board : public QGraphicsScene
 {
     Q_OBJECT
 public:
     explicit Board(QObject *parent = nullptr);
     ~Board();
+    QGraphicsView* view;
     QList<Piece*> pieces;
     QList<Tile*> tiles;
 private:

@@ -6,14 +6,13 @@
 #endif
 
 #include <QMessageBox>
-#include <QGraphicsRectItem>
-#include <QGraphicsItem>
+#include <QGraphicsPixmapItem>
 #include <QBrush>
 #include <QPen>
 
 enum Color {BLACK, WHITE};
 
-class Piece : public QGraphicsRectItem //possible memory leak
+class Piece : public QGraphicsPixmapItem //possible memory leak
 {
 public:
     Piece();

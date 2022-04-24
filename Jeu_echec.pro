@@ -39,3 +39,17 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 FORMS +=
+
+DISTFILES += \
+    Black/Chess_bdt60.png \
+    Black/Chess_kdt60.png \
+    Black/Chess_ndt60.png \
+    Black/Chess_pdt60.png \
+    Black/Chess_qdt60.png \
+    Black/Chess_rdt60.png \
+    White/Chess_blt60.png \
+    White/Chess_klt60.png \
+    White/Chess_nlt60.png \
+    White/Chess_plt60.png \
+    White/Chess_qlt60.png \
+    White/Chess_rlt60.png
