@@ -2,17 +2,19 @@
 #define LOGICALBOARD_H
 
 
-enum LogicalPiece {KING, QUEEN, BISHOP, KNIGHT, ROOK, PAWN};
+enum LogicalPiece {KING, QUEEN, BISHOP, KNIGHT, ROOK, PAWN, NOTHING};
 
 class LogicalBoard
 {
 public:
     static LogicalBoard getBoard();
-    LogicalPiece position[8][8];
+    void setPiece(int x, int y, LogicalPiece piece);
+    LogicalPiece getPiece(int x, int y);
 
 private:
     LogicalBoard();
     static LogicalBoard board;
+    LogicalPiece position[8][8];
 };
 
 #endif // LOGICALBOARD_H
