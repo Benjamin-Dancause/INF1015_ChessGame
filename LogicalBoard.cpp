@@ -2,19 +2,19 @@
 
 LogicalBoard LogicalBoard::board;
 
-LogicalBoard LogicalBoard::getBoard()
+LogicalBoard& LogicalBoard::getBoard()
 {
     return board;
 }
 
 void LogicalBoard::setPiece(int x, int y, LogicalPiece piece)
 {
-    position[x][y] = piece;
+    position[8*y + x] = piece;
 }
 
 LogicalPiece LogicalBoard::getPiece(int x, int y)
 {
-    return position[x][y];
+    return position[8*y + x];
 }
 
 
@@ -25,8 +25,15 @@ LogicalBoard::LogicalBoard()
     {
         for (int j = 0; j < 8; j++)
         {
-            position[i][j] = NOTHING;
+            position.push_back(NOTHING);
         }
     }
 }
 
+
+
+
+bool isWhite(LogicalPiece piece)
+{
+    return (piece < BLACK_KING);
+}

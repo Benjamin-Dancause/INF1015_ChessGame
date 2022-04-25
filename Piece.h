@@ -5,10 +5,13 @@
 #define tile_size 75
 #endif
 
+#ifndef piece_adjust
+#define piece_adjust 7
+#endif
+
 #include <QMessageBox>
 #include <QGraphicsPixmapItem>
-#include <QBrush>
-#include <QPen>
+#include <cstdlib>
 
 enum Color {BLACK, WHITE};
 

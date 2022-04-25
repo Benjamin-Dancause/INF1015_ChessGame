@@ -34,9 +34,9 @@ void Piece::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
     int y = (pos().y() + tile_size / 2) - ((int) pos().y() + tile_size / 2 ) % tile_size;
     QMessageBox msg;
     msg.setText("Illegal move");
-    std::cout << "x: " << x/75 << " y: " << y/75 << std::endl; //Debug tool, to be removed
+    std::cout << "x: " << x / tile_size << " y: " << y / tile_size << std::endl; //Debug tool, to be removed
     msg.exec();
-    setPos(x + 7,y + 7);
+    setPos(x + piece_adjust, y + piece_adjust);
 
     QGraphicsItem::mouseReleaseEvent((e));
 }
