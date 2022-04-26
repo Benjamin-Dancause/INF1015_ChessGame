@@ -2,7 +2,6 @@
 #define PAWN_H
 
 #include "Piece.h"
-#include "LogicalBoard.h"
 
 class Pawn : public Piece
 {

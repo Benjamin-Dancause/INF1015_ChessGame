@@ -7,10 +7,12 @@ Knight::Knight(int x, int y, Color color)
     color_ = color;
     if (color == BLACK)
     {
+        pieceType = BLACK_KNIGHT;
         setPixmap(QPixmap("../INF1015_ChessGame/Black/Chess_ndt60.png"));
     }
     else
     {
+        pieceType = WHITE_KNIGHT;
         setPixmap(QPixmap("../INF1015_ChessGame/White/Chess_nlt60.png"));
     }
 

@@ -12,6 +12,7 @@
 #include <QMessageBox>
 #include <QGraphicsPixmapItem>
 #include <cstdlib>
+#include "LogicalBoard.h"
 
 enum Color {BLACK, WHITE};
 
@@ -22,6 +23,7 @@ public:
     Piece(int x, int y, Color color);
     int getPosx();
     int getPosy();
+    LogicalPiece pieceType;
 private:
 protected:
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *e);
