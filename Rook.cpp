@@ -7,12 +7,12 @@ Rook::Rook(int x, int y, Color color)
     color_ = color;
     if (color == BLACK)
     {
-        pieceType = BLACK_ROOK;
+        pieceType_ = BLACK_ROOK;
         setPixmap(QPixmap("../INF1015_ChessGame/Black/Chess_rdt60.png"));
     }
     else
     {
-        pieceType = WHITE_ROOK;
+        pieceType_ = WHITE_ROOK;
         setPixmap(QPixmap("../INF1015_ChessGame/White/Chess_rlt60.png"));
     }
 

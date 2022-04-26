@@ -23,13 +23,15 @@ public:
     Piece(int x, int y, Color color);
     int getPosx();
     int getPosy();
-    LogicalPiece pieceType;
+    void invalideMove();
+    void updateBoard(int x, int y);
 private:
 protected:
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *e);
     int x_ = 0;
     int y_ = 0;
     Color color_;
+    LogicalPiece pieceType_;
 };
 
 #endif // PIECE_H

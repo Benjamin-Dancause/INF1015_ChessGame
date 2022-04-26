@@ -36,7 +36,7 @@ Board::Board(QObject *parent) : QGraphicsScene(parent)
         Pawn* pawn = new Pawn(i, 1, BLACK);
         pieces.append(pawn);
         addItem(pawn);
-        //LogicalBoard::getBoard().setPiece(i, 1, BLACK_PAWN);
+        LogicalBoard::getBoard().setPiece(i, 1, BLACK_PAWN);
     }
 
     for (int i = 0; i < 8; i++)
@@ -44,7 +44,7 @@ Board::Board(QObject *parent) : QGraphicsScene(parent)
         Pawn* pawn = new Pawn(i, 6, WHITE);
         pieces.append(pawn);
         addItem(pawn);
-        LogicalBoard::getBoard().setPiece(i, 6, BLACK_PAWN);
+        LogicalBoard::getBoard().setPiece(i, 6, WHITE_PAWN);
     }
 
     {

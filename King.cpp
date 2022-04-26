@@ -7,12 +7,12 @@ King::King(int x, int y, Color color)
     color_ = color;
     if (color == BLACK)
     {
-        pieceType = BLACK_KING;
+        pieceType_ = BLACK_KING;
         setPixmap(QPixmap("../INF1015_ChessGame/Black/Chess_kdt60.png"));
     }
     else
     {
-        pieceType = WHITE_KING;
+        pieceType_ = WHITE_KING;
         setPixmap(QPixmap("../INF1015_ChessGame/White/Chess_klt60.png"));
     }
 

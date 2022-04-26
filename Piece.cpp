@@ -40,3 +40,20 @@ void Piece::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
 
     QGraphicsItem::mouseReleaseEvent((e));
 }
+
+void Piece::invalideMove()
+{
+    QMessageBox msg;
+    msg.setText("Invalid move");
+    msg.exec();
+    setPos(x_ * tile_size + piece_adjust, y_ * tile_size + piece_adjust);
+}
+
+void Piece::updateBoard(int x, int y)
+{
+    LogicalBoard::getBoard().setPiece(x_, y_, NOTHING);
+    LogicalBoard::getBoard().setPiece(x, y, pieceType_);
+    x_ = x;
+    y_ = y;
+    setPos(x * tile_size + piece_adjust, y * tile_size + piece_adjust);
+}

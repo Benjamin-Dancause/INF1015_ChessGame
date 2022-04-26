@@ -7,12 +7,12 @@ Bishop::Bishop(int x, int y, Color color)
     color_ = color;
     if (color == WHITE)
     {
-        pieceType = WHITE_BISHOP;
+        pieceType_ = WHITE_BISHOP;
         setPixmap(QPixmap("../INF1015_ChessGame/White/Chess_blt60.png"));
     }
     else
     {
-        pieceType = BLACK_BISHOP;
+        pieceType_ = BLACK_BISHOP;
         setPixmap(QPixmap("../INF1015_ChessGame/Black/Chess_bdt60.png"));
     }
 

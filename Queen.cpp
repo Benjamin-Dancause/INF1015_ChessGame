@@ -7,12 +7,12 @@ Queen::Queen(int x, int y, Color color)
     color_ = color;
     if (color == BLACK)
     {
-        pieceType = BLACK_QUEEN;
+        pieceType_ = BLACK_QUEEN;
         setPixmap(QPixmap("../INF1015_ChessGame/Black/Chess_qdt60.png"));
     }
     else
     {
-        pieceType = WHITE_QUEEN;
+        pieceType_ = WHITE_QUEEN;
         setPixmap(QPixmap("../INF1015_ChessGame/White/Chess_qlt60.png"));
     }
 
