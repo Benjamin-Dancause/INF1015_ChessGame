@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     Bishop.cpp \
     Board.cpp \
+    Capture.cpp \
     King.cpp \
     Knight.cpp \
     LogicalBoard.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 HEADERS += \
     Bishop.h \
     Board.h \
+    Capture.h \
     King.h \
     Knight.h \
     LogicalBoard.h \

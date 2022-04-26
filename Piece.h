@@ -13,10 +13,11 @@
 #include <QGraphicsPixmapItem>
 #include <cstdlib>
 #include "LogicalBoard.h"
+#include "Capture.h"
 
 enum Color {BLACK, WHITE};
 
-class Piece : public QGraphicsPixmapItem //possible memory leak
+class Piece : public QGraphicsPixmapItem
 {
 public:
     Piece();
@@ -25,6 +26,7 @@ public:
     int getPosy();
     void invalideMove();
     void updateBoard(int x, int y);
+    Capture capture;
 private:
 protected:
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *e);

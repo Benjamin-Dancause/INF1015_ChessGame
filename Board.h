@@ -21,13 +21,12 @@ class Board : public QGraphicsScene
 public:
     explicit Board(QObject *parent = nullptr);
     ~Board();
-    QGraphicsView* view;
-    QList<Piece*> pieces;
-    QList<Tile*> tiles;
 private:
-
-signals:
-
+    QGraphicsView* view_;
+    QList<Piece*> pieces_;
+    QList<Tile*> tiles_;
+public slots:
+void hidePiece(int x, int y);
 };
 
 #endif // BOARD_H

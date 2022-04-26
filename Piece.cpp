@@ -28,6 +28,16 @@ Piece::Piece(int x, int y, Color color)
 
 }
 
+int Piece::getPosx()
+{
+    return x_;
+}
+
+int Piece::getPosy()
+{
+    return y_;
+}
+
 void Piece::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
 {
     int x = (pos().x() + tile_size / 2) - ((int) pos().x() + tile_size / 2 ) % tile_size;
@@ -38,7 +48,7 @@ void Piece::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
     msg.exec();
     setPos(x + piece_adjust, y + piece_adjust);
 
-    QGraphicsItem::mouseReleaseEvent((e));
+    QGraphicsItem::mouseReleaseEvent(e);
 }
 
 void Piece::invalideMove()

@@ -4,7 +4,7 @@
 
 Board::Board(QObject *parent) : QGraphicsScene(parent)
 {
-    view = new QGraphicsView(this);
+    view_ = new QGraphicsView(this);
 
     //construction of the black and white pattern
     {
@@ -23,7 +23,7 @@ Board::Board(QObject *parent) : QGraphicsScene(parent)
                 {
                     if (j % 2 == 1) {tile->setWhite();}
                 }
-                tiles.append(tile);
+                tiles_.append(tile);
                 addItem(tile);
                 if (j == 7) {temp = !temp;}
             }
@@ -34,7 +34,8 @@ Board::Board(QObject *parent) : QGraphicsScene(parent)
     for (int i = 0; i < 8; i++)
     {
         Pawn* pawn = new Pawn(i, 1, BLACK);
-        pieces.append(pawn);
+        pieces_.append(pawn);
+        connect(&(pawn->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(pawn);
         LogicalBoard::getBoard().setPiece(i, 1, BLACK_PAWN);
     }
@@ -42,51 +43,60 @@ Board::Board(QObject *parent) : QGraphicsScene(parent)
     for (int i = 0; i < 8; i++)
     {
         Pawn* pawn = new Pawn(i, 6, WHITE);
-        pieces.append(pawn);
+        pieces_.append(pawn);
+        connect(&(pawn->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(pawn);
         LogicalBoard::getBoard().setPiece(i, 6, WHITE_PAWN);
     }
 
     {
         Rook* whiteRook1 = new Rook(0, 7, WHITE);
-        pieces.append(whiteRook1);
+        pieces_.append(whiteRook1);
+        connect(&(whiteRook1->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(whiteRook1);
         LogicalBoard::getBoard().setPiece(0, 7, WHITE_ROOK);
 
         Rook* whiteRook2 = new Rook(7, 7, WHITE);
-        pieces.append(whiteRook2);
+        pieces_.append(whiteRook2);
+        connect(&(whiteRook2->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(whiteRook2);
         LogicalBoard::getBoard().setPiece(7, 7, WHITE_ROOK);
 
         Rook* blackRook1 = new Rook(0, 0, BLACK);
-        pieces.append(blackRook1);
+        pieces_.append(blackRook1);
+        connect(&(blackRook1->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(blackRook1);
         LogicalBoard::getBoard().setPiece(0, 0, BLACK_ROOK);
 
         Rook* blackRook2 = new Rook(7, 0, BLACK);
-        pieces.append(blackRook2);
+        pieces_.append(blackRook2);
+        connect(&(blackRook2->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(blackRook2);
         LogicalBoard::getBoard().setPiece(7, 0, BLACK_ROOK);
     }
 
     {
         Knight* whiteKnight1 = new Knight(1, 7, WHITE);
-        pieces.append(whiteKnight1);
+        pieces_.append(whiteKnight1);
+        connect(&(whiteKnight1->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(whiteKnight1);
         LogicalBoard::getBoard().setPiece(1, 7, WHITE_KNIGHT);
 
         Knight* whiteKnight2 = new Knight(6, 7, WHITE);
-        pieces.append(whiteKnight2);
+        pieces_.append(whiteKnight2);
+        connect(&(whiteKnight2->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(whiteKnight2);
         LogicalBoard::getBoard().setPiece(6, 7, WHITE_KNIGHT);
 
         Knight* blackKnight1 = new Knight(1, 0, BLACK);
-        pieces.append(blackKnight1);
+        pieces_.append(blackKnight1);
+        connect(&(blackKnight1->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(blackKnight1);
         LogicalBoard::getBoard().setPiece(1, 0, BLACK_KNIGHT);
 
         Knight* blackKnight2 = new Knight(6, 0, BLACK);
-        pieces.append(blackKnight2);
+        pieces_.append(blackKnight2);
+        connect(&(blackKnight2->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(blackKnight2);
         LogicalBoard::getBoard().setPiece(6, 0, BLACK_KNIGHT);
 
@@ -94,63 +104,83 @@ Board::Board(QObject *parent) : QGraphicsScene(parent)
 
     {
         Bishop* whiteBishop1 = new Bishop(2, 7, WHITE);
-        pieces.append(whiteBishop1);
+        pieces_.append(whiteBishop1);
+        connect(&(whiteBishop1->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(whiteBishop1);
         LogicalBoard::getBoard().setPiece(2, 7, WHITE_BISHOP);
 
         Bishop* whiteBishop2 = new Bishop(5, 7, WHITE);
-        pieces.append(whiteBishop2);
+        pieces_.append(whiteBishop2);
+        connect(&(whiteBishop2->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(whiteBishop2);
         LogicalBoard::getBoard().setPiece(5, 7, WHITE_BISHOP);
 
         Bishop* blackBishop1 = new Bishop(2, 0, BLACK);
-        pieces.append(blackBishop1);
+        pieces_.append(blackBishop1);
+        connect(&(blackBishop1->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(blackBishop1);
         LogicalBoard::getBoard().setPiece(2, 0, BLACK_BISHOP);
 
         Bishop* blackBishop2 = new Bishop(5, 0, BLACK);
-        pieces.append(blackBishop2);
+        pieces_.append(blackBishop2);
+        connect(&(blackBishop2->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(blackBishop2);
         LogicalBoard::getBoard().setPiece(5, 0, BLACK_BISHOP);
     }
 
     {
         Queen* whiteQueen = new Queen(3, 7, WHITE);
-        pieces.append(whiteQueen);
+        pieces_.append(whiteQueen);
+        connect(&(whiteQueen->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(whiteQueen);
         LogicalBoard::getBoard().setPiece(3, 7, WHITE_QUEEN);
 
         Queen* blackQueen = new Queen(3, 0, BLACK);
-        pieces.append(blackQueen);
+        pieces_.append(blackQueen);
+        connect(&(blackQueen->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(blackQueen);
         LogicalBoard::getBoard().setPiece(3, 0, BLACK_QUEEN);
     }
     
     {
         King* whiteKing = new King(4, 7, WHITE);
-        pieces.append(whiteKing);
+        pieces_.append(whiteKing);
+        connect(&(whiteKing->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(whiteKing);
         LogicalBoard::getBoard().setPiece(4, 7, WHITE_KING);
 
         King* blackKing = new King(4, 0, BLACK);
-        pieces.append(blackKing);
+        pieces_.append(blackKing);
+        connect(&(blackKing->capture), &Capture::hasCaptured, this, &Board::hidePiece);
         addItem(blackKing);
         LogicalBoard::getBoard().setPiece(4, 0, BLACK_KING);
     }
-
 
 }
 
 Board::~Board()
 {
-    for (int i = 0; i < pieces.size(); i++)
+    for (int i = 0; i < pieces_.size(); i++)
     {
-        delete pieces.at(i);
+        delete pieces_.at(i);
     }
 
-    for (int i = 0 ; i < tiles.size(); i++)
+    for (int i = 0 ; i < tiles_.size(); i++)
     {
-        delete tiles.at(i);
+        delete tiles_.at(i);
+    }
+}
+
+void Board::hidePiece(int x, int y)
+{
+    for (int i = 0; i < 32; i++)
+    {
+        std::cout << i << std::endl;
+        if (pieces_[i]->getPosx() == x && pieces_[i]->getPosy() == y)
+        {
+            std::cout << "got it !" << std::endl;
+            pieces_[i]->hide();
+        }
     }
 }
 
