@@ -1,4 +1,5 @@
 #include "Knight.h"
+#include <iostream>
 
 Knight::Knight(int x, int y, Color color)
 {
@@ -21,5 +22,69 @@ Knight::Knight(int x, int y, Color color)
 
 void Knight::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
 {
-
+    int x = ((pos().x() + tile_size / 2) - ((int) pos().x() + tile_size / 2 ) % tile_size) / tile_size;
+    int y = ((pos().y() + tile_size / 2) - ((int) pos().y() + tile_size / 2 ) % tile_size) / tile_size;
+    if (color_ == WHITE)
+    {
+        if        ((x_ + 2 == x && (y_ + 1 == y || y_ - 1 == y))
+                || (x_ - 2 == x && (y_ + 1 == y || y_ - 1 == y))
+                || (y_ + 2 == y && (x_ + 1 == x || x_ - 1 == x))
+                || (y_ - 2 == y && (x_ + 1 == x || x_ - 1 == x)))
+        {
+            std::cout << "knit moves h" << std::endl;
+            if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+            {
+                invalideMove();
+            }
+            else if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+            {
+                updateBoard(x,y);
+            }
+            else
+            {
+                capture.hasCaptured(x,y);
+                updateBoard(x,y);
+            }
+        }
+        else if (x_ == x && y_ == y)
+        {
+            updateBoard(x,y);
+        }
+        else
+        {
+            invalideMove();
+        }
+    }
+    else
+    {
+        if        ((x_ + 2 == x && (y_ + 1 == y || y_ - 1 == y))
+                || (x_ - 2 == x && (y_ + 1 == y || y_ - 1 == y))
+                || (y_ + 2 == y && (x_ + 1 == x || x_ - 1 == x))
+                || (y_ - 2 == y && (x_ + 1 == x || x_ - 1 == x)))
+        {
+            std::cout << "knit moves h" << std::endl;
+            if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+            {
+                updateBoard(x,y);
+            }
+            else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
+            {
+                invalideMove();
+            }
+            else
+            {
+                capture.hasCaptured(x,y);
+                updateBoard(x,y);
+            }
+        }
+        else if (x_ == x && y_ == y)
+        {
+            updateBoard(x,y);
+        }
+        else
+        {
+            invalideMove();
+        }
+    }
+    QGraphicsItem::mouseReleaseEvent((e));
 }
