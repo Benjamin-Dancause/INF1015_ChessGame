@@ -1,4 +1,5 @@
 #include "Queen.h"
+#include <iostream>
 
 Queen::Queen(int x, int y, Color color)
 {

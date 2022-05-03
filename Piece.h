@@ -26,6 +26,7 @@ public:
     int getPosy();
     void invalideMove();
     void updateBoard(int x, int y);
+    void gotCaptured();
     Capture capture;
 private:
 protected:
@@ -34,6 +35,7 @@ protected:
     int y_ = 0;
     Color color_;
     LogicalPiece pieceType_;
+    bool captured = false;
 };
 
 #endif // PIECE_H

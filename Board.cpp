@@ -180,6 +180,7 @@ void Board::hidePiece(int x, int y)
         {
             std::cout << "got it !" << std::endl;
             pieces_[i]->hide();
+            pieces_[i]->gotCaptured();
         }
     }
 }

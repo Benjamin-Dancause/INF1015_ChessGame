@@ -67,3 +67,8 @@ void Piece::updateBoard(int x, int y)
     y_ = y;
     setPos(x * tile_size + piece_adjust, y * tile_size + piece_adjust);
 }
+
+void Piece::gotCaptured()
+{
+    captured = true;
+}
