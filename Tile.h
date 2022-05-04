@@ -10,7 +10,7 @@
 #include <QBrush>
 #include <QPen>
 
-class Tile : public QGraphicsRectItem // possible memory leak
+class Tile : public QGraphicsRectItem
 {
 public:
     Tile();

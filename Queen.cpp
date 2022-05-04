@@ -22,5 +22,7 @@ Queen::Queen(int x, int y, Color color)
 
 void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
 {
-
+    int x = ((pos().x() + tile_size / 2) - ((int) pos().x() + tile_size / 2 ) % tile_size) / tile_size;
+    int y = ((pos().y() + tile_size / 2) - ((int) pos().y() + tile_size / 2 ) % tile_size) / tile_size;
+    QGraphicsItem::mouseReleaseEvent((e));
 }
