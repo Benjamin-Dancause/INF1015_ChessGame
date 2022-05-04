@@ -21,5 +21,51 @@ King::King(int x, int y, Color color)
 
 void King::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
 {
-
+    int x = ((pos().x() + tile_size / 2) - ((int) pos().x() + tile_size / 2 ) % tile_size) / tile_size;
+    int y = ((pos().y() + tile_size / 2) - ((int) pos().y() + tile_size / 2 ) % tile_size) / tile_size;
+    if (x_ == x && y_ == y)
+    {
+        updateBoard(x,y);
+    }
+    if (color_ == WHITE)
+    {
+        if (!(std::abs(x_-x) <= 1 && std::abs(y_-y) <= 1))
+        {
+            invalideMove();
+        }
+        else if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+        {
+            invalideMove();
+        }
+        else if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+        {
+            updateBoard(x,y);
+        }
+        else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
+        {
+            capture.hasCaptured(x,y);
+            updateBoard(x,y);
+        }
+    }
+    else
+    {
+        if (!(std::abs(x_-x) <= 1 && std::abs(y_-y) <= 1))
+        {
+            invalideMove();
+        }
+        else if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+        {
+            updateBoard(x,y);
+        }
+        else if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+        {
+            capture.hasCaptured(x,y);
+            updateBoard(x,y);
+        }
+        else
+        {
+            invalideMove();
+        }
+    }
+    QGraphicsItem::mouseReleaseEvent((e));
 }
