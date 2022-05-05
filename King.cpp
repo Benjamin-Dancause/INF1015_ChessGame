@@ -43,7 +43,7 @@ void King::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
         }
         else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
         {
-            capture.hasCaptured(x,y);
+            messenger.hasCaptured(x,y);
             updateBoard(x,y);
         }
     }
@@ -59,7 +59,7 @@ void King::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
         }
         else if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
         {
-            capture.hasCaptured(x,y);
+            messenger.hasCaptured(x,y);
             updateBoard(x,y);
         }
         else

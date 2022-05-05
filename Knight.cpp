@@ -42,7 +42,7 @@ void Knight::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
             }
             else
             {
-                capture.hasCaptured(x,y);
+                messenger.hasCaptured(x,y);
                 updateBoard(x,y);
             }
         }
@@ -73,7 +73,7 @@ void Knight::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
             }
             else
             {
-                capture.hasCaptured(x,y);
+                messenger.hasCaptured(x,y);
                 updateBoard(x,y);
             }
         }

@@ -55,7 +55,7 @@ void Rook::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
             if (update)
             {
                 if(capturing)
-                    capture.hasCaptured(x,y);
+                    messenger.hasCaptured(x,y);
                 updateBoard(x,y);
             }
         }
@@ -84,7 +84,7 @@ void Rook::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
             if (update)
             {
                 if(capturing)
-                    capture.hasCaptured(x,y);
+                    messenger.hasCaptured(x,y);
                 updateBoard(x,y);
             }
 
@@ -115,7 +115,7 @@ void Rook::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
             if (update)
             {
                 if(capturing)
-                    capture.hasCaptured(x,y);
+                    messenger.hasCaptured(x,y);
                 updateBoard(x,y);
             }
         }
@@ -144,7 +144,7 @@ void Rook::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
             if (update)
             {
                 if(capturing)
-                    capture.hasCaptured(x,y);
+                    messenger.hasCaptured(x,y);
                 updateBoard(x,y);
             }
         }
@@ -185,7 +185,7 @@ void Rook::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
             if (update)
             {
                 if(capturing)
-                    capture.hasCaptured(x,y);
+                    messenger.hasCaptured(x,y);
                 updateBoard(x,y);
             }
         }
@@ -214,7 +214,7 @@ void Rook::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
             if (update)
             {
                 if(capturing)
-                    capture.hasCaptured(x,y);
+                    messenger.hasCaptured(x,y);
                 updateBoard(x,y);
             }
         }
@@ -243,7 +243,7 @@ void Rook::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
             if (update)
             {
                 if(capturing)
-                    capture.hasCaptured(x,y);
+                    messenger.hasCaptured(x,y);
                 updateBoard(x,y);
             }
         }
@@ -272,7 +272,7 @@ void Rook::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
             if (update)
             {
                 if(capturing)
-                    capture.hasCaptured(x,y);
+                    messenger.hasCaptured(x,y);
                 updateBoard(x,y);
             }
         }

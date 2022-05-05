@@ -11,10 +11,10 @@ CONFIG += c++11
 SOURCES += \
     Bishop.cpp \
     Board.cpp \
-    Capture.cpp \
     King.cpp \
     Knight.cpp \
     LogicalBoard.cpp \
+    Messenger.cpp \
     Pawn.cpp \
     Piece.cpp \
     Queen.cpp \
@@ -26,10 +26,10 @@ SOURCES += \
 HEADERS += \
     Bishop.h \
     Board.h \
-    Capture.h \
     King.h \
     Knight.h \
     LogicalBoard.h \
+    Messenger.h \
     Pawn.h \
     Piece.h \
     Queen.h \

@@ -13,7 +13,7 @@
 #include <QGraphicsPixmapItem>
 #include <cstdlib>
 #include "LogicalBoard.h"
-#include "Capture.h"
+#include "Messenger.h"
 
 enum Color {BLACK, WHITE};
 
@@ -27,7 +27,7 @@ public:
     void invalideMove();
     void updateBoard(int x, int y);
     void gotCaptured();
-    Capture capture;
+    Messenger messenger;
 private:
 protected:
     virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *e);

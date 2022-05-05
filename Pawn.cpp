@@ -38,7 +38,7 @@ void Pawn::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
             std::cout << "tried capturing a piece" << std::endl;
             if (LogicalBoard::getBoard().getPiece(x, y) != NOTHING && LogicalBoard::getBoard().getPiece(x,y) > WHITE_PAWN) // change the latter with a define ?
             {
-                capture.hasCaptured(x, y);
+                messenger.hasCaptured(x, y);
                 updateBoard(x,y);
             }
             else
@@ -87,7 +87,7 @@ void Pawn::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
             std::cout << "tried capturing a piece" << std::endl;
             if (LogicalBoard::getBoard().getPiece(x, y) != NOTHING && LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING) // change the latter with a define ?
             {
-                capture.hasCaptured(x, y);
+                messenger.hasCaptured(x, y);
                 updateBoard(x,y);
             }
             else

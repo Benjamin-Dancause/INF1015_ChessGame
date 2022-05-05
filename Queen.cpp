@@ -64,7 +64,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                     }
                     else if (LogicalBoard::getBoard().getPiece(x,y) < NOTHING)
                     {
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                         updateBoard(x,y);
                     }
                     else
@@ -94,7 +94,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                     }
                     else if (LogicalBoard::getBoard().getPiece(x,y) < NOTHING)
                     {
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                         updateBoard(x,y);
                     }
                     else
@@ -124,7 +124,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                     }
                     else if (LogicalBoard::getBoard().getPiece(x,y) < NOTHING)
                     {
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                         updateBoard(x,y);
                     }
                     else
@@ -154,7 +154,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                     }
                     else if (LogicalBoard::getBoard().getPiece(x,y) < NOTHING)
                     {
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                         updateBoard(x,y);
                     }
                     else
@@ -195,7 +195,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                     }
                     else if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
                     {
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                         updateBoard(x,y);
                     }
                 }
@@ -225,7 +225,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                     }
                     else if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
                     {
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                         updateBoard(x,y);
                     }
                 }
@@ -255,7 +255,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                     }
                     else
                     {
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                         updateBoard(x,y);
                     }
                 }
@@ -285,7 +285,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                     }
                     else
                     {
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                         updateBoard(x,y);;
                     }
                 }
@@ -322,7 +322,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                 if (update)
                 {
                     if(capturing)
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                     updateBoard(x,y);
                 }
             }
@@ -351,7 +351,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                 if (update)
                 {
                     if(capturing)
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                     updateBoard(x,y);
                 }
 
@@ -382,7 +382,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                 if (update)
                 {
                     if(capturing)
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                     updateBoard(x,y);
                 }
             }
@@ -411,7 +411,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                 if (update)
                 {
                     if(capturing)
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                     updateBoard(x,y);
                 }
             }
@@ -452,7 +452,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                 if (update)
                 {
                     if(capturing)
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                     updateBoard(x,y);
                 }
             }
@@ -481,7 +481,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                 if (update)
                 {
                     if(capturing)
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                     updateBoard(x,y);
                 }
             }
@@ -510,7 +510,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                 if (update)
                 {
                     if(capturing)
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                     updateBoard(x,y);
                 }
             }
@@ -539,7 +539,7 @@ void Queen::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
                 if (update)
                 {
                     if(capturing)
-                        capture.hasCaptured(x,y);
+                        messenger.hasCaptured(x,y);
                     updateBoard(x,y);
                 }
             }
