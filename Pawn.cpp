@@ -32,101 +32,120 @@ void Pawn::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
 
     if (color_ == WHITE)
     {
-
-        if(std::abs(x - x_) == 1 && y - y_ == -1 ) // tried capturing a piece
+        if (LogicalBoard::getBoard().isWhiteTurn())
         {
-            std::cout << "tried capturing a piece" << std::endl;
-            if (LogicalBoard::getBoard().getPiece(x, y) != NOTHING && LogicalBoard::getBoard().getPiece(x,y) > WHITE_PAWN) // change the latter with a define ?
+            if(std::abs(x - x_) == 1 && y - y_ == -1 ) // tried capturing a piece
             {
-                messenger.hasCaptured(x, y);
-                updateBoard(x,y);
+                std::cout << "tried capturing a piece" << std::endl;
+                if (LogicalBoard::getBoard().getPiece(x, y) != NOTHING && LogicalBoard::getBoard().getPiece(x,y) > WHITE_PAWN)
+                {
+                    messenger.hasCaptured(x, y);
+                    updateBoard(x,y);
+                    LogicalBoard::getBoard().nextTurn();
+                }
+                else
+                {
+                    invalideMove();
+                }
+            }
+            else if (y - y_ == -1) // tried going forward by one tile
+            {
+                std::cout << "tried moving a piece" << std::endl;
+                if (LogicalBoard::getBoard().getPiece(x_, y_ - 1) == NOTHING)
+                {
+                    updateBoard(x,y);
+                    LogicalBoard::getBoard().nextTurn();
+                }
+                else
+                {
+                    invalideMove();
+                }
+            }
+            else if (y - y_ == -2 && isFirstMove) // tried going forward by two tile
+            {
+                std::cout << "tried moving the piece by 2" << std::endl;
+                if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING && LogicalBoard::getBoard().getPiece(x,y+1) == NOTHING)
+                {
+                    updateBoard(x,y);
+                    LogicalBoard::getBoard().nextTurn();
+                }
+                else
+                {
+                    invalideMove();
+                }
+            }
+            else if (y - y_ == 0 && x - x_ == 0)
+            {
+                std::cout << "did nothing" << std::endl;
+                setPos(x * tile_size + piece_adjust, y * tile_size + piece_adjust);
             }
             else
             {
                 invalideMove();
             }
-        }
-        else if (y - y_ == -1) // tried going forward by one tile
-        {
-            std::cout << "tried moving a piece" << std::endl;
-            if (LogicalBoard::getBoard().getPiece(x_, y_ - 1) == NOTHING)
-            {
-                updateBoard(x,y);
-            }
-            else
-            {
-                invalideMove();
-            }
-        }
-        else if (y - y_ == -2 && isFirstMove) // tried going forward by two tile
-        {
-            std::cout << "tried moving the piece by 2" << std::endl;
-            if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING && LogicalBoard::getBoard().getPiece(x,y+1) == NOTHING)
-            {
-                updateBoard(x,y);
-            }
-            else
-            {
-                invalideMove();
-            }
-        }
-        else if (y - y_ == 0 && x - x_ == 0)
-        {
-            std::cout << "did nothing" << std::endl;
-            setPos(x * tile_size + piece_adjust, y * tile_size + piece_adjust);
         }
         else
         {
-            invalideMove();
+            wrongSide();
         }
     }
     else
     {
-        if(std::abs(x - x_) == 1 && y - y_ == 1 ) // tried capturing a piece
+        if (!LogicalBoard::getBoard().isWhiteTurn())
         {
-            std::cout << "tried capturing a piece" << std::endl;
-            if (LogicalBoard::getBoard().getPiece(x, y) != NOTHING && LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING) // change the latter with a define ?
+            if(std::abs(x - x_) == 1 && y - y_ == 1 ) // tried capturing a piece
             {
-                messenger.hasCaptured(x, y);
+                std::cout << "tried capturing a piece" << std::endl;
+                if (LogicalBoard::getBoard().getPiece(x, y) != NOTHING && LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+                {
+                    messenger.hasCaptured(x, y);
+                    updateBoard(x,y);
+                    LogicalBoard::getBoard().nextTurn();
+                }
+                else
+                {
+                    invalideMove();
+                }
+            }
+            else if (y - y_ == 1) // tried going forward by one tile
+            {
+                std::cout << "tried moving a piece" << std::endl;
+                if (LogicalBoard::getBoard().getPiece(x_, y_ + 1) == NOTHING)
+                {
+                    updateBoard(x,y);
+                    LogicalBoard::getBoard().nextTurn();
+                }
+                else
+                {
+                    invalideMove();
+                }
+            }
+            else if (y - y_ == 2 && isFirstMove) // tried going forward by two tile
+            {
+                std::cout << "tried moving the piece by 2" << std::endl;
+                if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING && LogicalBoard::getBoard().getPiece(x,y-1) == NOTHING)
+                {
+                    updateBoard(x,y);
+                    LogicalBoard::getBoard().nextTurn();
+                }
+                else
+                {
+                    invalideMove();
+                }
+            }
+            else if (y - y_ == 0 && x - x_ == 0)
+            {
+                std::cout << "did nothing" << std::endl;
                 updateBoard(x,y);
             }
             else
             {
                 invalideMove();
             }
-        }
-        else if (y - y_ == 1) // tried going forward by one tile
-        {
-            std::cout << "tried moving a piece" << std::endl;
-            if (LogicalBoard::getBoard().getPiece(x_, y_ + 1) == NOTHING)
-            {
-                updateBoard(x,y);
-            }
-            else
-            {
-                invalideMove();
-            }
-        }
-        else if (y - y_ == 2 && isFirstMove) // tried going forward by two tile
-        {
-            std::cout << "tried moving the piece by 2" << std::endl;
-            if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING && LogicalBoard::getBoard().getPiece(x,y-1) == NOTHING)
-            {
-                updateBoard(x,y);
-            }
-            else
-            {
-                invalideMove();
-            }
-        }
-        else if (y - y_ == 0 && x - x_ == 0)
-        {
-            std::cout << "did nothing" << std::endl;
-            setPos(x * tile_size + piece_adjust, y * tile_size + piece_adjust);
         }
         else
         {
-            invalideMove();
+            wrongSide();
         }
     }
 

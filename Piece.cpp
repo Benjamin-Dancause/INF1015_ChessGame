@@ -59,6 +59,14 @@ void Piece::invalideMove()
     setPos(x_ * tile_size + piece_adjust, y_ * tile_size + piece_adjust);
 }
 
+void Piece::wrongSide()
+{
+    QMessageBox msg;
+    msg.setText("It's not your turn !");
+    msg.exec();
+    setPos(x_ * tile_size + piece_adjust, y_ * tile_size + piece_adjust);
+}
+
 void Piece::updateBoard(int x, int y)
 {
     LogicalBoard::getBoard().setPiece(x_, y_, NOTHING);

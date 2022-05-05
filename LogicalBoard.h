@@ -11,11 +11,13 @@ public:
     static LogicalBoard& getBoard();
     void setPiece(int x, int y, LogicalPiece piece);
     LogicalPiece getPiece(int x, int y);
-
+    void nextTurn();
+    bool isWhiteTurn();
 private:
     LogicalBoard();
     static LogicalBoard board;
     std::vector<LogicalPiece> position;
+    int turnCounter = 0;
 };
 
 bool isWhite(LogicalPiece piece);

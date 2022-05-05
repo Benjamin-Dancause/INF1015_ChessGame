@@ -23,48 +23,67 @@ void King::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
 {
     int x = ((pos().x() + tile_size / 2) - ((int) pos().x() + tile_size / 2 ) % tile_size) / tile_size;
     int y = ((pos().y() + tile_size / 2) - ((int) pos().y() + tile_size / 2 ) % tile_size) / tile_size;
-    if (x_ == x && y_ == y)
-    {
-        updateBoard(x,y);
-    }
+
     if (color_ == WHITE)
     {
-        if (!(std::abs(x_-x) <= 1 && std::abs(y_-y) <= 1))
+        if (LogicalBoard::getBoard().isWhiteTurn())
         {
-            invalideMove();
+            if (x_ == x && y_ == y)
+            {
+                updateBoard(x,y);
+            }
+            else if (!(std::abs(x_-x) <= 1 && std::abs(y_-y) <= 1))
+            {
+                invalideMove();
+            }
+            else if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+            {
+                invalideMove();
+            }
+            else if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+            {
+                updateBoard(x,y);
+                LogicalBoard::getBoard().nextTurn();
+            }
+            else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
+            {
+                messenger.hasCaptured(x,y);
+                updateBoard(x,y);
+                LogicalBoard::getBoard().nextTurn();
+            }
         }
-        else if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+        else
         {
-            invalideMove();
-        }
-        else if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
-        {
-            updateBoard(x,y);
-        }
-        else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
-        {
-            messenger.hasCaptured(x,y);
-            updateBoard(x,y);
+            wrongSide();
         }
     }
     else
     {
-        if (!(std::abs(x_-x) <= 1 && std::abs(y_-y) <= 1))
+        if (!LogicalBoard::getBoard().isWhiteTurn())
         {
-            invalideMove();
-        }
-        else if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
-        {
-            updateBoard(x,y);
-        }
-        else if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
-        {
-            messenger.hasCaptured(x,y);
-            updateBoard(x,y);
+            if (!(std::abs(x_-x) <= 1 && std::abs(y_-y) <= 1))
+            {
+                invalideMove();
+            }
+            else if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+            {
+                updateBoard(x,y);
+                LogicalBoard::getBoard().nextTurn();
+            }
+            else if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+            {
+                messenger.hasCaptured(x,y);
+                updateBoard(x,y);
+                LogicalBoard::getBoard().nextTurn();
+            }
+            else
+            {
+                invalideMove();
+            }
         }
         else
         {
-            invalideMove();
+            wrongSide();
         }
     }
     QGraphicsItem::mouseReleaseEvent((e));

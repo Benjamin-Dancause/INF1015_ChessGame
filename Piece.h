@@ -25,6 +25,7 @@ public:
     int getPosx();
     int getPosy();
     void invalideMove();
+    void wrongSide();
     void updateBoard(int x, int y);
     void gotCaptured();
     Messenger messenger;

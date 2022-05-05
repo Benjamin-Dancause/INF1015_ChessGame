@@ -27,263 +27,293 @@ void Bishop::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
     int y = ((pos().y() + tile_size / 2) - ((int) pos().y() + tile_size / 2 ) % tile_size) / tile_size;
     bool goingRight = x > x_;
     bool goingDown = y > y_;
-    if (std::abs(x - x_) != std::abs(y - y_))
+    if (color_ == WHITE)
     {
-        invalideMove();
-    }
-    else if (color_ == WHITE)
-    {
-        bool validMove = true;
-        if (x_ == x)
+        if (LogicalBoard::getBoard().isWhiteTurn())
         {
-            updateBoard(x,y);
-        }
-        else if ( goingDown && goingRight )
-        {
-            for (int i = 1; x_ + i < x ; i++)
+            bool validMove = true;
+            if (std::abs(x - x_) != std::abs(y - y_))
             {
-                if (LogicalBoard::getBoard().getPiece(x_ + i, y_ + i) != NOTHING)
+                invalideMove();
+            }
+            else if (x_ == x)
+            {
+                updateBoard(x,y);
+            }
+            else if ( goingDown && goingRight )
+            {
+                for (int i = 1; x_ + i < x ; i++)
                 {
-                    std::cout << i << std::endl;
-                    invalideMove();
-                    validMove = false;
-                    break;
-                }
+                    if (LogicalBoard::getBoard().getPiece(x_ + i, y_ + i) != NOTHING)
+                    {
+                        std::cout << i << std::endl;
+                        invalideMove();
+                        validMove = false;
+                        break;
+                    }
 
+                }
+                if (validMove)
+                {
+                    if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+                    {
+                        invalideMove();
+                    }
+                    else if (LogicalBoard::getBoard().getPiece(x,y) < NOTHING)
+                    {
+                        messenger.hasCaptured(x,y);
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
+                    else
+                    {
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
+                }
             }
-            if (validMove)
+            else if ( !goingDown && goingRight)
             {
-                if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+                for (int i = 1; x_ + i < x ; i++)
                 {
-                    invalideMove();
+                    if (LogicalBoard::getBoard().getPiece(x_ + i, y_ - i) != NOTHING)
+                    {
+                        std::cout << i << std::endl;
+                        invalideMove();
+                        validMove = false;
+                        break;
+                    }
+
                 }
-                else if (LogicalBoard::getBoard().getPiece(x,y) < NOTHING)
+                if (validMove)
                 {
-                    messenger.hasCaptured(x,y);
-                    updateBoard(x,y);
+                    if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+                    {
+                        invalideMove();
+                    }
+                    else if (LogicalBoard::getBoard().getPiece(x,y) < NOTHING)
+                    {
+                        messenger.hasCaptured(x,y);
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
+                    else
+                    {
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
                 }
-                else
+            }
+            else if (goingDown && !goingRight)
+            {
+                for (int i = 1; x_ - i > x ; i++)
                 {
-                    updateBoard(x,y);
+                    if (LogicalBoard::getBoard().getPiece(x_ - i, y_ + i) != NOTHING)
+                    {
+                        std::cout << i << std::endl;
+                        invalideMove();
+                        validMove = false;
+                        break;
+                    }
+
+                }
+                if (validMove)
+                {
+                    if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+                    {
+                        invalideMove();
+                    }
+                    else if (LogicalBoard::getBoard().getPiece(x,y) < NOTHING)
+                    {
+                        messenger.hasCaptured(x,y);
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
+                    else
+                    {
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
+                }
+            }
+            else if (!goingDown && !goingRight)
+            {
+                for (int i = 1; x_ - i > x ; i++)
+                {
+                    if (LogicalBoard::getBoard().getPiece(x_ - i, y_ - i) != NOTHING)
+                    {
+                        std::cout << i << std::endl;
+                        invalideMove();
+                        validMove = false;
+                        break;
+                    }
+
+                }
+                if (validMove)
+                {
+                    if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+                    {
+                        invalideMove();
+                    }
+                    else if (LogicalBoard::getBoard().getPiece(x,y) < NOTHING)
+                    {
+                        messenger.hasCaptured(x,y);
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
+                    else
+                    {
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
                 }
             }
         }
-        else if ( !goingDown && goingRight)
+        else
         {
-            for (int i = 1; x_ + i < x ; i++)
-            {
-                if (LogicalBoard::getBoard().getPiece(x_ + i, y_ - i) != NOTHING)
-                {
-                    std::cout << i << std::endl;
-                    invalideMove();
-                    validMove = false;
-                    break;
-                }
-
-            }
-            if (validMove)
-            {
-                if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
-                {
-                    invalideMove();
-                }
-                else if (LogicalBoard::getBoard().getPiece(x,y) < NOTHING)
-                {
-                    messenger.hasCaptured(x,y);
-                    updateBoard(x,y);
-                }
-                else
-                {
-                    updateBoard(x,y);
-                }
-            }
-        }
-        else if (goingDown && !goingRight)
-        {
-            for (int i = 1; x_ - i > x ; i++)
-            {
-                if (LogicalBoard::getBoard().getPiece(x_ - i, y_ + i) != NOTHING)
-                {
-                    std::cout << i << std::endl;
-                    invalideMove();
-                    validMove = false;
-                    break;
-                }
-
-            }
-            if (validMove)
-            {
-                if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
-                {
-                    invalideMove();
-                }
-                else if (LogicalBoard::getBoard().getPiece(x,y) < NOTHING)
-                {
-                    messenger.hasCaptured(x,y);
-                    updateBoard(x,y);
-                }
-                else
-                {
-                    updateBoard(x,y);
-                }
-            }
-        }
-        else if (!goingDown && !goingRight)
-        {
-            for (int i = 1; x_ - i > x ; i++)
-            {
-                if (LogicalBoard::getBoard().getPiece(x_ - i, y_ - i) != NOTHING)
-                {
-                    std::cout << i << std::endl;
-                    invalideMove();
-                    validMove = false;
-                    break;
-                }
-
-            }
-            if (validMove)
-            {
-                if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
-                {
-                    invalideMove();
-                }
-                else if (LogicalBoard::getBoard().getPiece(x,y) < NOTHING)
-                {
-                    messenger.hasCaptured(x,y);
-                    updateBoard(x,y);
-                }
-                else
-                {
-                    updateBoard(x,y);
-                }
-            }
+            wrongSide();
         }
     }
     else
     {
-        bool validMove = true;
-        if (x_ == x)
+        if (!LogicalBoard::getBoard().isWhiteTurn())
         {
-            updateBoard(x,y);
-        }
-        else if ( goingDown && goingRight )
-        {
-            for (int i = 1; x_ + i < x ; i++)
+            bool validMove = true;
+            if (x_ == x)
             {
-                if (LogicalBoard::getBoard().getPiece(x_ + i, y_ + i) != NOTHING)
+                updateBoard(x,y);
+            }
+            else if ( goingDown && goingRight )
+            {
+                for (int i = 1; x_ + i < x ; i++)
                 {
-                    invalideMove();
-                    validMove = false;
-                    break;
-                }
+                    if (LogicalBoard::getBoard().getPiece(x_ + i, y_ + i) != NOTHING)
+                    {
+                        invalideMove();
+                        validMove = false;
+                        break;
+                    }
 
+                }
+                if (validMove)
+                {
+                    if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+                    {
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
+                    else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
+                    {
+                        invalideMove();
+                    }
+                    else if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+                    {
+                        messenger.hasCaptured(x,y);
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
+                }
             }
-            if (validMove)
+            else if ( !goingDown && goingRight)
             {
-                if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+                for (int i = 1; x_ + i < x ; i++)
                 {
-                    updateBoard(x,y);
+                    if (LogicalBoard::getBoard().getPiece(x_ + i, y_ - i) != NOTHING)
+                    {
+                        std::cout << i << std::endl;
+                        invalideMove();
+                        validMove = false;
+                        break;
+                    }
+
                 }
-                else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
+                if (validMove)
                 {
-                    invalideMove();
+                    if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+                    {
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
+                    else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
+                    {
+                        invalideMove();
+                    }
+                    else if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+                    {
+                        messenger.hasCaptured(x,y);
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
                 }
-                else if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+            }
+            else if (goingDown && !goingRight)
+            {
+                for (int i = 1; x_ - i > x ; i++)
                 {
-                    messenger.hasCaptured(x,y);
-                    updateBoard(x,y);
+                    if (LogicalBoard::getBoard().getPiece(x_ - i, y_ + i) != NOTHING)
+                    {
+                        std::cout << i << std::endl;
+                        invalideMove();
+                        validMove = false;
+                        break;
+                    }
+
+                }
+                if (validMove)
+                {
+                    if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+                    {
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
+                    else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
+                    {
+                        invalideMove();
+                    }
+                    else
+                    {
+                        messenger.hasCaptured(x,y);
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
+                }
+            }
+            else if (!goingDown && !goingRight)
+            {
+                for (int i = 1; x_ - i > x ; i++)
+                {
+                    if (LogicalBoard::getBoard().getPiece(x_ - i, y_ - i) != NOTHING)
+                    {
+                        std::cout << i << std::endl;
+                        invalideMove();
+                        validMove = false;
+                        break;
+                    }
+
+                }
+                if (validMove)
+                {
+                    if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+                    {
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
+                    else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
+                    {
+                        invalideMove();
+                    }
+                    else
+                    {
+                        messenger.hasCaptured(x,y);
+                        updateBoard(x,y);
+                        LogicalBoard::getBoard().nextTurn();
+                    }
                 }
             }
         }
-        else if ( !goingDown && goingRight)
+        else
         {
-            for (int i = 1; x_ + i < x ; i++)
-            {
-                if (LogicalBoard::getBoard().getPiece(x_ + i, y_ - i) != NOTHING)
-                {
-                    std::cout << i << std::endl;
-                    invalideMove();
-                    validMove = false;
-                    break;
-                }
-
-            }
-            if (validMove)
-            {
-                if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
-                {
-                    updateBoard(x,y);
-                }
-                else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
-                {
-                    invalideMove();
-                }
-                else if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
-                {
-                    messenger.hasCaptured(x,y);
-                    updateBoard(x,y);
-                }
-            }
-        }
-        else if (goingDown && !goingRight)
-        {
-            for (int i = 1; x_ - i > x ; i++)
-            {
-                if (LogicalBoard::getBoard().getPiece(x_ - i, y_ + i) != NOTHING)
-                {
-                    std::cout << i << std::endl;
-                    invalideMove();
-                    validMove = false;
-                    break;
-                }
-
-            }
-            if (validMove)
-            {
-                if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
-                {
-                    updateBoard(x,y);
-                }
-                else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
-                {
-                    invalideMove();
-                }
-                else
-                {
-                    messenger.hasCaptured(x,y);
-                    updateBoard(x,y);
-                }
-            }
-        }
-        else if (!goingDown && !goingRight)
-        {
-            for (int i = 1; x_ - i > x ; i++)
-            {
-                if (LogicalBoard::getBoard().getPiece(x_ - i, y_ - i) != NOTHING)
-                {
-                    std::cout << i << std::endl;
-                    invalideMove();
-                    validMove = false;
-                    break;
-                }
-
-            }
-            if (validMove)
-            {
-                if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
-                {
-                    updateBoard(x,y);
-                }
-                else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
-                {
-                    invalideMove();
-                }
-                else
-                {
-                    messenger.hasCaptured(x,y);
-                    updateBoard(x,y);;
-                }
-            }
+            wrongSide();
         }
     }
     QGraphicsItem::mouseReleaseEvent((e));

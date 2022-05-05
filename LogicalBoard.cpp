@@ -17,6 +17,16 @@ LogicalPiece LogicalBoard::getPiece(int x, int y)
     return position[8*y + x];
 }
 
+void LogicalBoard::nextTurn()
+{
+    turnCounter++;
+}
+
+bool LogicalBoard::isWhiteTurn()
+{
+    return turnCounter % 2 == 0;
+}
+
 
 
 LogicalBoard::LogicalBoard()

@@ -26,64 +26,81 @@ void Knight::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
     int y = ((pos().y() + tile_size / 2) - ((int) pos().y() + tile_size / 2 ) % tile_size) / tile_size;
     if (color_ == WHITE)
     {
-        if        ((x_ + 2 == x && (y_ + 1 == y || y_ - 1 == y))
-                || (x_ - 2 == x && (y_ + 1 == y || y_ - 1 == y))
-                || (y_ + 2 == y && (x_ + 1 == x || x_ - 1 == x))
-                || (y_ - 2 == y && (x_ + 1 == x || x_ - 1 == x)))
+        if (LogicalBoard::getBoard().isWhiteTurn())
         {
-            std::cout << "knit moves h" << std::endl;
-            if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+            if        ((x_ + 2 == x && (y_ + 1 == y || y_ - 1 == y))
+                    || (x_ - 2 == x && (y_ + 1 == y || y_ - 1 == y))
+                    || (y_ + 2 == y && (x_ + 1 == x || x_ - 1 == x))
+                    || (y_ - 2 == y && (x_ + 1 == x || x_ - 1 == x)))
             {
-                invalideMove();
+                std::cout << "knit moves h" << std::endl;
+                if (LogicalBoard::getBoard().getPiece(x,y) < BLACK_KING)
+                {
+                    invalideMove();
+                }
+                else if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+                {
+                    updateBoard(x,y);
+                    LogicalBoard::getBoard().nextTurn();
+                }
+                else
+                {
+                    messenger.hasCaptured(x,y);
+                    updateBoard(x,y);
+                }
             }
-            else if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+            else if (x_ == x && y_ == y)
             {
                 updateBoard(x,y);
             }
             else
             {
-                messenger.hasCaptured(x,y);
-                updateBoard(x,y);
+                invalideMove();
             }
-        }
-        else if (x_ == x && y_ == y)
-        {
-            updateBoard(x,y);
         }
         else
         {
-            invalideMove();
+            wrongSide();
         }
     }
     else
     {
-        if        ((x_ + 2 == x && (y_ + 1 == y || y_ - 1 == y))
-                || (x_ - 2 == x && (y_ + 1 == y || y_ - 1 == y))
-                || (y_ + 2 == y && (x_ + 1 == x || x_ - 1 == x))
-                || (y_ - 2 == y && (x_ + 1 == x || x_ - 1 == x)))
+        if (!LogicalBoard::getBoard().isWhiteTurn())
         {
-            std::cout << "knit moves h" << std::endl;
-            if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+            if        ((x_ + 2 == x && (y_ + 1 == y || y_ - 1 == y))
+                    || (x_ - 2 == x && (y_ + 1 == y || y_ - 1 == y))
+                    || (y_ + 2 == y && (x_ + 1 == x || x_ - 1 == x))
+                    || (y_ - 2 == y && (x_ + 1 == x || x_ - 1 == x)))
+            {
+                std::cout << "knit moves h" << std::endl;
+                if (LogicalBoard::getBoard().getPiece(x,y) == NOTHING)
+                {
+                    updateBoard(x,y);
+                    LogicalBoard::getBoard().nextTurn();
+                }
+                else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
+                {
+                    invalideMove();
+                }
+                else
+                {
+                    messenger.hasCaptured(x,y);
+                    updateBoard(x,y);
+                    LogicalBoard::getBoard().nextTurn();
+                }
+            }
+            else if (x_ == x && y_ == y)
             {
                 updateBoard(x,y);
-            }
-            else if (LogicalBoard::getBoard().getPiece(x,y) >= BLACK_KING)
-            {
-                invalideMove();
             }
             else
             {
-                messenger.hasCaptured(x,y);
-                updateBoard(x,y);
+                invalideMove();
             }
-        }
-        else if (x_ == x && y_ == y)
-        {
-            updateBoard(x,y);
         }
         else
         {
-            invalideMove();
+            wrongSide();
         }
     }
     QGraphicsItem::mouseReleaseEvent((e));
